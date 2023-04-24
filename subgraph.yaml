@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SushiswapFactory
+    network: mainnet
+    source:
+      address: "0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac"
+      abi: SushiswapFactory
+      startBlock: 10794229
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - PairCreated
+      abis:
+        - name: SushiswapFactory
+          file: ./abis/SushiswapFactory.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
+      file: ./src/sushiswap-factory.ts
