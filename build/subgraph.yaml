@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: SushiswapFactory
@@ -17,11 +17,11 @@ dataSources:
         - PairCreated
       abis:
         - name: SushiswapFactory
-          file: ./abis/SushiswapFactory.json
+          file: SushiswapFactory\abis\SushiswapFactory.json
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address,uint256)
           handler: handlePair
-      file: ./src/sushiswap-factory.ts
+      file: SushiswapFactory\SushiswapFactory.wasm
 templates:
   - kind: ethereum
     name: SushiswapPair
@@ -36,8 +36,8 @@ templates:
         - Swap
       abis:
         - name: SushiswapPair
-          file: ./abis/SushiswapPair.json
+          file: SushiswapPair\abis\SushiswapPair.json
       eventHandlers:
         - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
           handler: handleSwap
-      file: ./src/sushiswap-pair.ts
+      file: templates\SushiswapPair\SushiswapPair.wasm
